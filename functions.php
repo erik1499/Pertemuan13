@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost" , "root", "", "dasarphp");
+$conn = mysqli_connect("localhost" , "root", "", "db_maba");
 //   $servername = "localhost";
 //  $username = "root";
 //  $password = "";
@@ -32,21 +32,21 @@ function query($query){
 //     $jurusan= $data["jurusan"];
 //     $gambar= $data["gambar"];
 
-    $nama= htmlspecialchars($data["nama"]);
-    $nim= htmlspecialchars($data["nim"]);
-    $email= htmlspecialchars($data["email"]);
-    $jurusan= htmlspecialchars($data["jurusan"]);
-    
+    $nama = htmlspecialchars($data["nama"]);
+    $nim = htmlspecialchars($data["nim"]);
+    $email = htmlspecialchars($data["email"]);
+    $jurusan = htmlspecialchars($data["jurusan"]);
+    $alamat = htmlspecialchars($data["alamat"]);
     //Upload Gambar
     $gambar = upload(); 
     if (!$gambar) {
-        
+        return  false;
     }
     
 
-    $query = "INSERT INTO datamaba (nama, nim, email, jurusan, gambar)
+    $query = "INSERT INTO mahasiswa (nama, nim, email, jurusan, gambar, alamat)
             VALUES
-            ('$nama','$nim','$email','$jurusan','$gambar')
+            ( '','$nama','$nim','$email','$jurusan','$gambar' ,'$alamat')
                     ";
     mysqli_query($conn, $query);
 
@@ -76,7 +76,7 @@ function upload(){
 
         // chek apakah yang diupload  adalah gambar
 
-         $extensiGambarValid = ['jpg','jpeg','png','raw'];
+         $extensiGambarValid = ['JPG','JPEG','PNG','RAW','jpg','jpeg','png','raw'];
             $extensiGambar = explode('.', $namafile);
     // extensi explode pada php adalah untuk memecah sebuah string menjadi array 
             $extensiGambar = strtolower(end($extensiGambar));
@@ -99,7 +99,7 @@ function upload(){
                 return false;
              }
            
-            
+            //dwhaudhadh
         
 }
 
@@ -111,9 +111,11 @@ function upload(){
 function hapus($id){
     global $conn;
 
-    mysqli_query($conn, "DELETE FROM datamaba WHERE Id = $id ");
+    mysqli_query($conn, "DELETE FROM mahasiswa WHERE id = '$id'");
     return mysqli_affected_rows($conn);
 }
+
+//funsi ubah
 
 function ubah($data, $id) 
 {
@@ -124,15 +126,15 @@ function ubah($data, $id)
     $email= htmlspecialchars($data["email"]);
     $jurusan= htmlspecialchars($data["jurusan"]);
     $gambar= htmlspecialchars($data["gambar"]);
-
-    mysqli_query($conn, "UPDATE datamaba SET nama = '$nama', nim = '$nim', email = '$email', jurusan = '$jurusan', gambar = '$gambar' WHERE Id = '$id'");
+    $alamat = htmlspecialchars($data["alamat"]);
+    mysqli_query($conn, "UPDATE mahasiswa SET nama = '$nama', nim = '$nim', email = '$email', jurusan = '$jurusan', gambar = '$gambar' alamat ='$alamat' WHERE id = '$id'");
     return mysqli_affected_rows($conn);
 }
 
-
+ //funsi cari
 function cari($keyword){
   
-    $query = "SELECT * FROM datamaba 
+    $query = "SELECT * FROM mahasiswa 
                         WHERE 
                        nama LIKE '%$keyword%' OR
                        nim LIke '%$keyword%' OR

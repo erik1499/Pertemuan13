@@ -10,7 +10,7 @@ require_once 'functions.php';
   
 
 // apakah data berhasil ditambahka apa tidak
-        if (tambah($_POST)) {
+        if (tambah($_POST) > 0 ) {
             echo"   
             <script>
 alert('data berhasil di tambahkan!!');
@@ -65,6 +65,10 @@ document.location.href ='index.php';
             <li>
                 <label for="email">Email: </label>
                  <input type="text" name="email" id="email" required>
+            </li>
+            <li>
+                <label for="alamat">Alamat: </label>
+                <input type="text" name="alamat" id="alamat" required>
             </li>
             <li>
                 <label for="gambar">Gambar: </label>

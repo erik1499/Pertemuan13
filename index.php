@@ -4,7 +4,7 @@
 
 require_once 'functions.php';  // untuk memanggil data base
 
-$mahasiswa = query("SELECT * FROM datamaba ");
+$mahasiswa = query("SELECT * FROM mahasiswa ");
 // ambil data dari mahasiswa / query data mahasiswa
 
 if (isset($_POST["cari"])) {
@@ -65,6 +65,8 @@ if (isset($_POST["cari"])) {
             <th>NIM</th>
             <th>Jurusan</th>
             <th>Email</th>
+            <th>Alamat</th>
+
         </tr> 
 
 
@@ -74,15 +76,16 @@ if (isset($_POST["cari"])) {
        
             <td><?= $i; ?></td>
             <td>
-                <a href="ubah.php?Id=<?= $row["Id"]; ?>">Ubah</a> |
-                <a href="hapus.php?Id=<?= $row["Id"];?>"onclick="return confirm('Apakah anda Ingin menghapus?'); ">Hapus</a>
+                <a href="ubah.php?id=<?= $row["id"]; ?>">Ubah</a> |
+                <a href="hapus.php?id=<?= $row["id"];?>"onclick="return confirm('Apakah anda Ingin menghapus?'); ">Hapus</a>
 
             </td>
             <td><img src="img/<?=  $row["gambar"]; ?>" width="50"></td>
             <td><?= $row["nama"];?></td>
             <td><?= $row["nim"]; ?></td>
-            <td><?= $row["jurusan"]; ?> </td>
+            <td><?= $row["jurusan"]; ?></td>
             <td><?= $row["email"]; ?></td>
+            <td><?= $row["alamat"];?></td>
         </tr>
         <?php $i++;?>
         <?php } ?>

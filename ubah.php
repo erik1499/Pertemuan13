@@ -5,20 +5,20 @@ require_once 'functions.php';
  
   //Ambil data dari URL
 
-  $id = $_GET["Id"];
+  $id = $_GET["id"];
 
   
 
   //query data mahasiswa id
 
-  $mhs= mysqli_query($conn, "SELECT * FROM datamaba WHERE Id = '$id' ");
+  $mhs= mysqli_query($conn, "SELECT * FROM datamaba WHERE id = '$id' ");
 
   $mhs = mysqli_fetch_assoc($mhs);
   if (isset($_POST["submit"]) ) {
 
 
 // apakah data berhasil di ubah  apa tidak
-        if (ubah($_POST, $_GET['Id']) > 0) {
+        if (ubah($_POST, $_GET['id']) > 0) {
             echo"   
             <script>
 alert('data berhasil di Ubah!!');

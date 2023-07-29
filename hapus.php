@@ -2,7 +2,7 @@
  
  require_once 'functions.php';
 
-$id  = $_GET["Id"];
+$id = $_GET['id'];
 
     if ( hapus($id) >0) {
         
